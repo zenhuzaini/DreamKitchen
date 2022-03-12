@@ -71,3 +71,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+## initialization
+1. running docker
+docker run --name mongo_dreamKitchen -p 27017:27017 -d mongo
