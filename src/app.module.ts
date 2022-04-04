@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserModule } from './modules/user/user.module';
+import { WidgetModule } from './modules/widget/widget.module';
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -14,6 +15,7 @@ import { UserModule } from './modules/user/user.module';
       playground: true,
     }),
     UserModule,
+    WidgetModule,
   ],
   controllers: [AppController],
   providers: [AppService],
