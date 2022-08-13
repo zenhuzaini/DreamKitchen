@@ -29,7 +29,8 @@
 ## Installation
 
 ```bash
-$ npm install
+$ yarn install
+$ docker pull postgres
 ```
 
 ## Running the app
