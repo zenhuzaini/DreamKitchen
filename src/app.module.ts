@@ -6,6 +6,12 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserModule } from './modules/user/user.module';
 import { WidgetModule } from './modules/widget/widget.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+// import { configService } from 'config/config.service';
+import { ConfigModule } from '@nestjs/config';
+import configurations from './config/configurations';
+import { AppDataSource } from './config/ormconfig';
+
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -14,6 +20,11 @@ import { WidgetModule } from './modules/widget/widget.module';
       debug: false,
       playground: true,
     }),
+    ConfigModule.forRoot({
+      load: [configurations],
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot(AppDataSource.options),
     UserModule,
     WidgetModule,
   ],

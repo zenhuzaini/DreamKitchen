@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "lib": ["es2015", "es2017", "es2019", "esnext.promise"],
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -10,6 +11,9 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
-  }
+    "incremental": true,
+    "allowJs": false
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
