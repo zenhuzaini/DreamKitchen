@@ -29,3 +29,16 @@ export class UserBaseDTO {
   @Field({ nullable: true })
   public isEmployee: boolean;
 }
+
+// @ObjectType()
+// export class UserDTO extends IntersectionType(
+//   UserDTOBase,
+//   ListItemDTO,
+//   ObjectType,
+// ) {}
+
+// @ObjectType()
+// export class UsersPagedResultDTO extends PagedResultDTO<UserDTO> {
+//   @Field(() => [UserDTO])
+//   public records: UserDTO[];
+// }

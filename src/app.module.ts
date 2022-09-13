@@ -9,8 +9,7 @@ import { WidgetModule } from './modules/widget/widget.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 // import { configService } from 'config/config.service';
 import { ConfigModule } from '@nestjs/config';
-import configurations from './config/configurations';
-import { AppDataSource } from './config/ormconfig';
+import { AppDataSource } from './../ormconfig';
 
 @Module({
   imports: [
@@ -21,7 +20,6 @@ import { AppDataSource } from './config/ormconfig';
       playground: true,
     }),
     ConfigModule.forRoot({
-      load: [configurations],
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(AppDataSource.options),

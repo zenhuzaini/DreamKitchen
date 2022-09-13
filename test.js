@@ -1,23 +1,25 @@
-console.log('this is http ');
-const http = require('http');
+const { Client } = require('pg');
 
-// this code is to retry with exponential backoff
-function wait(timeout) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log('soemthing here');
-      resolve('something');
-    }, timeout);
-  });
-}
+console.log('after  connecting');
 
-wait(3000).then((r) => {
-  console.log('something ', r);
-});
+const connectDb = async () => {
+  try {
+    const client = new Client({
+      host: 'localhost',
+      user: 'postgres',
+      database: 'postgres',
+      password: '@101101996Zen',
+      port: '5432',
+    });
 
-http
-  .createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('test tes');
-  })
-  .listen(1996);
+    console.log('before connected');
+    await client.connect();
+    // const res = await client.query('SELECT * FROM some_table');
+    console.log('get something after');
+    await client.end();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+connectDb();
