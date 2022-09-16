@@ -4,8 +4,10 @@ import {
   IntersectionType,
   ObjectType,
   OmitType,
+  PartialType,
 } from '@nestjs/graphql';
 import { BaseDTO } from 'src/shared/dto/base.dto';
+import { UserRoleEnum, UserRoleType } from './user.type';
 
 @ObjectType()
 export class UserBaseDTO {
@@ -26,6 +28,9 @@ export class UserBaseDTO {
 
   @Field()
   public dob: Date;
+
+  @Field({ nullable: true })
+  public userRoleId: UserRoleType = UserRoleEnum.user;
 }
 
 @ObjectType()
@@ -42,33 +47,8 @@ export class CreateUserInputDTO extends OmitType(
   InputType, // now this is the decorator that will be applied to `UserBaseDTO` when mapping this type
 ) {}
 
-// @InputType()
-// export class UpdateMemberUserInputDTO extends UpdateListItemInputDTO {
-//   @Field({ nullable: true })
-//   public isClientHandler: boolean;
-
-//   @Field({ nullable: true })
-//   public isExecutive: boolean;
-
-//   @Field({ nullable: true })
-//   public isNonCoreExecutive: boolean;
-
-//   @Field({ nullable: true })
-//   public isPartner: boolean;
-
-//   @Field({ nullable: true })
-//   public hasRTFPermission: boolean;
-
-//   @Field({ nullable: true })
-//   public hasXMLUploadPermission: boolean;
-// }
-
-// @ObjectType()
-// export class UserDTO extends IntersectionType(
-//   UserDTOBase,
-//   ListItemDTO,
-//   ObjectType,
-// ) {}
+@InputType()
+export class UpdateUserInputDTO extends PartialType(UserDTO, InputType) {}
 
 // @ObjectType()
 // export class UsersPagedResultDTO extends PagedResultDTO<UserDTO> {

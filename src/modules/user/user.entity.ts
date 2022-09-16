@@ -1,6 +1,7 @@
 import { BaseEntity } from 'src/shared/entity/base.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { UserCategory } from '../user_category/user_category.entity';
+import { UserRole } from '../user_category/user_category.entity';
+import { UserRoleType } from './user.type';
 
 @Entity()
 export class User extends BaseEntity {
@@ -23,10 +24,14 @@ export class User extends BaseEntity {
   public dob: Date;
 
   // --------- ALIASES
-  @Column({ type: 'varchar', length: 400 })
-  public userCategoryId: string;
+  @Column({
+    type: 'enum',
+    enum: ['admin', 'user', 'ghost'],
+    default: 'ghost',
+  })
+  public userRoleId: UserRoleType;
 
-  @ManyToOne(() => UserCategory, (userCategory) => userCategory.id)
-  @JoinColumn({ name: 'userCategoryId' })
-  public userCategory: UserCategory;
+  @ManyToOne(() => UserRole, (userRole) => userRole.id)
+  @JoinColumn({ name: 'userRoleId' })
+  public userRole: UserRole;
 }
