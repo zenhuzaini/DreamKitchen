@@ -9,7 +9,7 @@ import { WidgetModule } from './modules/widget/widget.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 // import { configService } from 'config/config.service';
 import { ConfigModule } from '@nestjs/config';
-import { AppDataSource } from './../ormconfig';
+import { AppDataSource } from './database/ormconfig';
 
 @Module({
   imports: [

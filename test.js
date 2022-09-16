@@ -1,25 +1,34 @@
-const { Client } = require('pg');
-
-console.log('after  connecting');
-
-const connectDb = async () => {
-  try {
-    const client = new Client({
+const mysql = require('mysql2');
+const establishedConnection = () => {
+  return new Promise((resolve, reject) => {
+    const con = mysql.createConnection({
       host: 'localhost',
-      user: 'postgres',
-      database: 'postgres',
+      user: 'root',
       password: '@101101996Zen',
-      port: '5432',
+      database: 'journey',
     });
-
-    console.log('before connected');
-    await client.connect();
-    // const res = await client.query('SELECT * FROM some_table');
-    console.log('get something after');
-    await client.end();
-  } catch (error) {
-    console.log(error);
-  }
+    con.connect((err) => {
+      if (err) {
+        console.log('get err ', err);
+        reject(err);
+      }
+      console.log('get conn ', con);
+      resolve(con);
+    });
+  });
 };
 
-connectDb();
+establishedConnection()
+  .then((db) => {
+    console.log('Db connection stablished');
+    db.query(`select * from user`, null, function (err, data) {
+      if (!data) {
+        console.log('get nothing ', err);
+      } else {
+        console.log('Db Connection close Successfully ', data);
+      }
+    });
+  })
+  .catch((error) => {
+    console.log('Db not connected successfully', error);
+  });

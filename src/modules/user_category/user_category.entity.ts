@@ -1,8 +1,8 @@
-import { OmitType } from '@nestjs/graphql';
 import { BaseEntity } from 'src/shared/entity/base.entity';
-import { Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
-export class UserCategory extends OmitType(BaseEntity, ['createdBy']) {
+@Entity()
+export class UserCategory extends BaseEntity {
   @Column({ type: 'varchar', length: 300 })
   public category: string;
 }

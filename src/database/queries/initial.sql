@@ -83,6 +83,10 @@ CREATE TABLE IF NOT EXISTS post (
     lastChangedBy VARCHAR(50),
     title varchar(100),
     content varchar(5000),
+    createdBy VARCHAR(20),
+    FOREIGN KEY (createdBy)
+        REFERENCES user (id)
+        ON UPDATE RESTRICT ON DELETE CASCADE,
     FOREIGN KEY (lastChangedBy)
         REFERENCES user (id)
         ON UPDATE RESTRICT ON DELETE CASCADE
@@ -138,14 +142,14 @@ values
 ("6", true, "2032-11-11 13:23:44", "2022-11-11 13:23:41", "3", "City");
 
 -- POST
-insert into post (id, isActive, createDateTime, modifydateTime, lastChangedBy, title, content)
+insert into post (id, isActive, createDateTime, modifydateTime, lastChangedBy, title, content, createdBy)
 values 
-("1", true, "2029-11-11 13:23:44", "2022-11-11 13:23:41", "1", "walking Mountain", "ouch this is amazing"),
-("2", true, "2028-11-11 13:23:44", "2022-11-11 13:23:41", "2", "get the Adventure", "this must be hard"),
-("3", true, "2032-11-11 13:23:44", "2022-11-11 13:23:41", "3", "over the Sea", "I don't know"),
-("4", true, "2032-11-11 13:23:44", "2022-11-11 13:23:41", "3", "lalla la Forest", "what you need"),
-("5", true, "2032-11-11 13:23:44", "2022-11-11 13:23:41", "3", "Love Lake", "lorem ipsum"),
-("6", true, "2032-11-11 13:23:44", "2022-11-11 13:23:41", "3", "City in the bones", "something in the city");
+("1", true, "2029-11-11 13:23:44", "2022-11-11 13:23:41", "1", "walking Mountain", "ouch this is amazing", "1"),
+("2", true, "2028-11-11 13:23:44", "2022-11-11 13:23:41", "2", "get the Adventure", "this must be hard", "2"),
+("3", true, "2032-11-11 13:23:44", "2022-11-11 13:23:41", "3", "over the Sea", "I don't know", "2"),
+("4", true, "2032-11-11 13:23:44", "2022-11-11 13:23:41", "3", "lalla la Forest", "what you need", "3"),
+("5", true, "2032-11-11 13:23:44", "2022-11-11 13:23:41", "3", "Love Lake", "lorem ipsum","1"),
+("6", true, "2032-11-11 13:23:44", "2022-11-11 13:23:41", "3", "City in the bones", "something in the city","2");
 
 -- POSTTAG CATEGORY    
 insert into post_tag (id, postId, tagId)
