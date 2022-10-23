@@ -29,7 +29,8 @@
 ## Installation
 
 ```bash
-$ npm install
+$ yarn install
+$ docker pull postgres
 ```
 
 ## Running the app
@@ -72,7 +73,13 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](LICENSE).
 
-
 ## initialization
+
 1. running docker
-docker run --name mongo_dreamKitchen -p 27017:27017 -d mongo
+   docker run --name mongo_dreamKitchen -p 27017:27017 -d mongo
+
+## Setting eslint in vs code
+
+1. click setting gear icon
+2. find "format on save" options and tick it
+3. click tab view -> command -pallete -> format document. and choose prettier
