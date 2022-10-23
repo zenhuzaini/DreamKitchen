@@ -1,15 +1,28 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { DeletedItemDTO } from 'src/shared/dto/deletedItem.dto';
-import { CreateUserInputDTO, UpdateUserInputDTO, UserDTO } from './user.dto';
+import { PaginationDTO } from 'src/shared/dto/pagination.dto';
+import {
+  CreateUserInputDTO,
+  UpdateUserInputDTO,
+  UserDTO,
+  UsersPagedResultDTO,
+} from './user.dto';
 import { UserService } from './user.service';
 
 @Resolver(() => UserDTO)
 export class UserResolver {
   public constructor(private userService: UserService) {}
 
-  @Query(() => [UserDTO])
-  public async user(): Promise<UserDTO[]> {
-    return await this.userService.getUsers();
+  @Query(() => UsersPagedResultDTO)
+  public async user(
+    @Args({
+      name: 'pagination',
+      type: () => PaginationDTO,
+      nullable: true,
+    })
+    paginationDTO: PaginationDTO,
+  ): Promise<UsersPagedResultDTO> {
+    return await this.userService.getUsers(paginationDTO);
   }
 
   @Query(() => UserDTO)

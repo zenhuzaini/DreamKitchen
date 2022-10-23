@@ -1,6 +1,6 @@
 import { BaseEntity } from 'src/shared/entity/base.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { UserRole } from '../user_category/user_category.entity';
+import { UserRole } from '../user_role/user_role.entity';
 import { UserRoleType } from './user.type';
 
 @Entity()

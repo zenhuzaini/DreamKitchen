@@ -7,6 +7,7 @@ import {
   PartialType,
 } from '@nestjs/graphql';
 import { BaseDTO } from 'src/shared/dto/base.dto';
+import { PagedResultDTO } from 'src/shared/dto/pagedResult.dto';
 import { UserRoleEnum, UserRoleType } from './user.type';
 
 @ObjectType()
@@ -50,8 +51,8 @@ export class CreateUserInputDTO extends OmitType(
 @InputType()
 export class UpdateUserInputDTO extends PartialType(UserDTO, InputType) {}
 
-// @ObjectType()
-// export class UsersPagedResultDTO extends PagedResultDTO<UserDTO> {
-//   @Field(() => [UserDTO])
-//   public records: UserDTO[];
-// }
+@ObjectType()
+export class UsersPagedResultDTO extends PagedResultDTO<UserDTO> {
+  @Field(() => [UserDTO])
+  public records: UserDTO[];
+}
