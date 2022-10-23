@@ -10,6 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 // import { configService } from 'config/config.service';
 import { ConfigModule } from '@nestjs/config';
 import { AppDataSource } from './database/ormconfig';
+import { UserRoleModule } from './modules/user_role/user_role.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AppDataSource } from './database/ormconfig';
     }),
     TypeOrmModule.forRoot(AppDataSource.options),
     UserModule,
+    UserRoleModule,
     WidgetModule,
   ],
   controllers: [AppController],
